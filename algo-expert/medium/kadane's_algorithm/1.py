@@ -4,7 +4,7 @@ def kadanesAlgorithm(array):
     start = 0
     while start < len(array) - 1:
         if array[start] >= 0 or array[start] > array[start + 1]:
-            break;
+            break
         start += 1
     sum = array[start]
     maxSum = sum
