@@ -5,7 +5,7 @@ def tournamentWinner(competitions, results):
     scores = {best: 0}
     for i, comp in enumerate(competitions):
         winner = comp[results[i] - 1]
-        scores[winner] = result_map.setdefault(winner, 0) + 3
+        scores[winner] = scores.setdefault(winner, 0) + 3
         if scores[winner] > scores[best]:
             best = winner
     return best
