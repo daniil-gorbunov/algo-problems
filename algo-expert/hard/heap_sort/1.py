@@ -1,3 +1,4 @@
+# hard, sorting
 # time O(nlogn) | space O(1)
 def heapSort(arr):
     buildMaxHeap(arr)

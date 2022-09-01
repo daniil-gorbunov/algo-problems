@@ -1,3 +1,4 @@
+# hard, sorting
 # time O(n*d) | space O(n), n - array length, d - longest number length
 def radixSort(arr):
     if (len(arr)) == 0:

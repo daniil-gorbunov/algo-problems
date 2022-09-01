@@ -1,3 +1,4 @@
+# hard, sorting
 # Best: O(nlog(n)) time | O(log(n)) space
 # Average: O(nlog(n)) time | O(log(n)) space
 # Worst: O(n^2) time | O(log(n)) space
