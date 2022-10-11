@@ -8,27 +8,28 @@ class LRUCache:
     def insertKeyValuePair(self, key, value):
         if key in self.cache:
             cached = self.cache[key]
-            self.recentList.updateHead(cached.listNode)
+            cached.key = key
             cached.value = value
+            self.recentList.updateHead(cached)
             return
         if self.recentList.size >= self.maxSize:
             removedListNode = self.recentList.remove()
-            self.cache.pop(removedListNode.value)
-        addedListNode = self.recentList.add(key)
-        self.cache[key] = CacheElement(value, addedListNode)
+            self.cache.pop(removedListNode.key)
+        addedListNode = self.recentList.add(key, value)
+        self.cache[key] = addedListNode
 
     # time O(1) | space O(1)
     def getValueFromKey(self, key):
         if key not in self.cache:
             return None
         cached = self.cache[key]
-        self.recentList.updateHead(cached.listNode)
+        self.recentList.updateHead(cached)
         return cached.value
 
     # time O(1) | space O(1)
     def getMostRecentKey(self):
         if self.recentList.head:
-            return self.recentList.head.value
+            return self.recentList.head.key
         return None
 
 class RecentList():
@@ -38,8 +39,8 @@ class RecentList():
         self.size = 0
 
     # time O(1) | space O(1)
-    def add(self, value):
-        node = RecentListNode(value)
+    def add(self, key, value):
+        node = RecentListNode(key, value)
         node.next = self.head
         if self.head:
             self.head.prev = node
@@ -77,12 +78,8 @@ class RecentList():
         self.head = node
 
 class RecentListNode():
-    def __init__(self, value):
+    def __init__(self, key, value):
+        self.key = key
         self.value = value
         self.prev = None
         self.next = None
-
-class CacheElement():
-    def __init__(self, value, listNode):
-        self.value = value
-        self.listNode = listNode
