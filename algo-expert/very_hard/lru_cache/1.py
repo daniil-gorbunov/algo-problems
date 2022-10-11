@@ -60,6 +60,7 @@ class RecentList():
             node.prev.next = None
         if node is self.head:
             self.head = None
+        self.size -= 1
         return node
 
     # time O(1) | space O(1)
